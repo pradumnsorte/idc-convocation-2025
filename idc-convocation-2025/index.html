@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en" class="theme-minimal"> <!-- Switch themes: theme-classic | theme-cards | theme-minimal -->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IDC Convocation 2025 · IIT Bombay</title>
+  <meta name="description" content="Official page for IDC School of Design Convocation 2025: schedule, graduating students, photos, and chief guest address." />
+  <!-- Optional: Replace with your favicon -->
+  <link rel="icon" href="data:," />
+  <style>
+    /* ------------------------------
+       0) DESIGN TOKENS (EDIT HERE)
+       ------------------------------ */
+    :root{
+      --brand-h: 212;           /* change hue only for quick theme tint */
+      --brand: hsl(var(--brand-h) 90% 45%);
+      --brand-2: hsl(var(--brand-h) 30% 18%);
+      --bg: #ffffff;
+      --text: #1c1c1c;
+      --muted: #666;
+      --border: #e9e9e9;
+      --radius: 14px;
+      --space: clamp(1rem, 1.6vw, 2rem);
+      --maxw: 1100px;
+      --maxw-header: 1440px; /* wider header container */
+    }
+
+    /* Typography scale; swap to the site's fonts if known */
+    :root{
+      --ff-sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --ff-serif: ui-serif, Georgia, 'Times New Roman', serif;
+      --fs-900: clamp(2rem, 6vw, 3.75rem);
+      --fs-700: clamp(1.35rem, 2.6vw, 2rem);
+      --fs-600: clamp(1.1rem, 1.8vw, 1.35rem);
+      --fs-500: 1rem;
+    }
+
+    /* Base */
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; }
+    body { font-family: var(--ff-sans); line-height: 1.6; color: var(--text); background: var(--bg); }
+    img, video { max-width: 100%; height: auto; display:block; border-radius: calc(var(--radius) - 6px); }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover, a:focus-visible { text-decoration: underline; }
+    .container { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--space); }
+
+    /* Accessibility helpers */
+    .skip-link { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+    .skip-link:focus { position: fixed; left: var(--space); top: var(--space); width: auto; height: auto; padding: .5rem .75rem; background: #000; color:#fff; border-radius: 6px; z-index:999; }
+
+    /* Header */
+    .site-header { position: sticky; top:0; z-index: 50; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom:1px solid var(--border); }
+    .site-header .wrap { display:flex; align-items:center; justify-content:flex-start; gap:1rem; padding-block: .75rem; }
+    .brand { display:flex; align-items:center; gap:.6rem; font-weight: 800; letter-spacing:.2px; }
+    .brand .logo { height: 36px; width: auto; display:block; object-fit: contain; border-radius: 0; background: transparent; box-shadow: none; }
+    .brand span { font-size: 1.05rem; color: var(--brand-2); }
+
+    nav[aria-label="Primary"] ul { list-style: none; display:flex; gap: clamp(.5rem, 1.2vw, 1rem); margin:0; padding:0; }
+    nav[aria-label="Primary"] a { padding:.4rem .6rem; border-radius: 8px; font-weight:600; color:inherit; }
+    nav[aria-label="Primary"] a:hover { background: #f7f7f7; text-decoration: none; }
+
+    /* Hero */
+    #hero { padding-block: clamp(2rem, 6vw, 6rem); border-bottom:1px solid var(--border); }
+    .hero-inner { display:grid; gap: 1rem; grid-template-columns: 1fr; }
+    .kicker { text-transform: uppercase; letter-spacing: .12em; font-size: .8rem; color: var(--muted); }
+    .hero-title { font-size: var(--fs-900); line-height: 1.05; margin: .25rem 0; font-weight: 850; }
+    .hero-sub { font-size: var(--fs-600); color: var(--muted); max-width: 65ch; }
+    .hero-cta { display:flex; gap:.6rem; flex-wrap:wrap; margin-top: .75rem; }
+    .button { display:inline-block; background: var(--brand); color: #fff; padding:.7rem 1rem; border-radius: 10px; font-weight:700; border:1px solid hsl(var(--brand-h) 90% 35%); box-shadow: 0 6px 16px hsl(var(--brand-h) 90% 45% / .25); }
+    .button--ghost { background: #fff; color: var(--brand-2); border:1px solid var(--border); box-shadow:none; }
+
+    /* Sections */
+    section.section { padding-block: clamp(1.25rem, 4vw, 3rem); border-bottom:1px solid var(--border); }
+    .section h2 { font-size: var(--fs-700); line-height:1.2; margin: 0 0 .25rem 0; font-weight:800; }
+    .section .lede { color: var(--muted); margin: 0 0 1rem 0; }
+
+    /* Schedule */
+    .schedule { width:100%; border-collapse: collapse; font-size: var(--fs-500); }
+    .schedule th, .schedule td { border:1px solid var(--border); padding:.65rem .7rem; text-align:left; vertical-align: top; }
+    .schedule th { background:#fafafa; font-weight:700; }
+    .pill { display:inline-block; background:#f4f6ff; border:1px solid #e1e5ff; padding:.15rem .5rem; border-radius:999px; font-size:.82em; }
+
+    /* Graduates */
+    .grid { display:grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card { background:#fff; border:1px solid var(--border); border-radius: var(--radius); padding: .9rem; box-shadow: 0 6px 16px rgba(0,0,0,.03); }
+    .names-list { list-style:none; margin:0; padding:0; }
+    .names-list li { padding:.45rem .5rem; border:1px solid var(--border); border-radius: 8px; }
+
+    details { border:1px solid var(--border); border-radius: var(--radius); padding: .6rem .8rem; background:#fff; box-shadow: 0 4px 12px rgba(0,0,0,.02); }
+    details + details { margin-top: .75rem; }
+    summary { cursor: pointer; font-weight: 800; }
+
+    /* Photos */
+    .gallery { --min: 180px; display:grid; grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr)); gap: .75rem; }
+    .gallery figure { margin:0; }
+    .gallery figcaption { text-align:center; font-size: .85rem; color: var(--muted); margin-top:.35rem; }
+
+    /* Chief Guest */
+    .profile { display:grid; gap: 1rem; grid-template-columns: min(180px, 30%) 1fr; align-items:start; }
+    .profile img { width:100%; }
+
+    /* Address */
+    article.address { background:#fff; border:1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+    .blockquote { border-left: 4px solid var(--brand); padding-left: .9rem; margin: .75rem 0; color: var(--brand-2); font-style: italic; }
+
+    /* Footer */
+    footer.site-footer { text-align:center; padding: var(--space); color: var(--muted); }
+
+    /* Variant themes */
+    .theme-classic body { font-family: var(--ff-serif); }
+    .theme-classic .card, .theme-classic article.address { border-radius: 0; box-shadow:none; }
+
+    .theme-minimal .site-header { border-bottom: none; background: #fff; }
+    .theme-minimal .card, .theme-minimal details, .theme-minimal article.address { border: none; box-shadow:none; background: transparent; }
+
+    /* Print styles */
+    @media print{
+      nav, .hero-cta, .gallery figcaption, .skip-link { display:none !important; }
+      .site-header { position: static; border:none; }
+      .card, article.address, details { box-shadow:none; border:1px solid #ccc; }
+      a::after { content: " (" attr(href) ")"; font-size:.85em; }
+    }
+      /* IDC-native additions */
+    .breadcrumbs{ font-size:.9rem; color:var(--muted); padding-block:.5rem; border-bottom:1px solid var(--border); }
+    .breadcrumbs a{ color:inherit; }
+    #hero{ padding-block: clamp(1rem, 3vw, 2rem); }
+    .hero-title{ font-size: clamp(1.5rem, 3.2vw, 2rem); line-height:1.25; }
+    .hero-sub{ font-size: var(--fs-500); }
+    nav[aria-label="Primary"] a{ padding:.35rem .5rem; }
+    .section h2{ font-weight:800; font-size: clamp(1.1rem, 1.8vw, 1.4rem); }
+      .subnav{ margin:.5rem 0 1rem; font-size:.95rem; color:var(--muted); }
+    .subnav a{ color:inherit; }
+    .award-card{ display:grid; gap:.45rem; }
+    .award-head{ display:grid; grid-template-columns: 44px 1fr; gap:.6rem; align-items:center; }
+    .avatar{ width:44px; height:44px; border-radius:50%; display:grid; place-content:center; font-weight:800; color:#fff; background: var(--brand); box-shadow: 0 4px 10px hsl(var(--brand-h) 90% 45% / .25); }
+    .award-title{ margin:0; font-size:1.05rem; line-height:1.3; }
+    .recipient{ margin:.15rem 0 0; color:var(--muted); }
+    .project{ margin:.25rem 0 0; }
+    .citation{ margin:.25rem 0 0; }
+    .links{ margin:0; }
+  .brand{ text-decoration:none; color:inherit; }
+    .brand:hover{ text-decoration:none; }
+    /* Optional: live cropping if the PNG has padding; tweak the inset values */
+    .logo.clip{ clip-path: inset(0 0 0 0); }
+      /* Header gradient (IDC-like soft pastel wash) */
+    :root{
+      --grad-orange: 28 86% 55%;   /* tweak hue/sat/lightness to match brand */
+      --grad-blue:   195 85% 70%;
+      --grad-green:  150 60% 65%;
+    }
+    .site-header.gradient{ background: transparent; border-bottom:1px solid var(--border); }
+    .site-header.gradient .wrap{ position: relative; }
+    .theme-minimal .site-header.gradient{ background: transparent; }
+    .site-header.gradient::before{
+      content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(1200px 360px at 10% 30%, hsl(var(--grad-orange) / .28), transparent 60%),
+        radial-gradient(900px 300px at 78% 28%, hsl(var(--grad-blue) / .22), transparent 60%),
+        radial-gradient(1100px 380px at 96% 80%, hsl(var(--grad-green) / .20), transparent 60%),
+        linear-gradient(180deg, #ffffffcc, #ffffffcc); /* soft white veil for readability */
+      filter: saturate(105%);
+    }
+  .site-header .container{ max-width: var(--maxw-header); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- 1) Header -->
+  <header class="site-header gradient" role="banner">
+    <div class="container wrap">
+      <a class="brand" href="/" aria-label="IDC School of Design, IIT Bombay">
+        <img class="logo" src="assets/idc-logo.png" alt="IDC School of Design logo" />
+        <span>IDC School of Design · IIT Bombay</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumbs container" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <a href="#events">Events</a> / Convocation 2025
+    </nav>
+    <!-- 2) Hero -->
+    <section id="hero" class="container">
+      <p class="kicker">Events</p>
+      <h1 class="hero-title">Celebrating the Class of 2025</h1>
+      <p class="hero-sub">Join us in honouring the graduating cohort of IDC School of Design at IIT Bombay. Find the full schedule, graduating students lists, event photos, and the Convocation Address by the Chief Guest.</p>
+      <div class="hero-cta" hidden></div>
+    </section>
+
+    <!-- Reordered: Chief Guest intro, Address, Photos, then Awards -->
+    <section id="chief-guest" class="section">
+      <div class="container">
+        <h2>Chief Guest</h2>
+        <div class="profile card">
+          <img src="assets/chief-guest.jpg" alt="Portrait of the Chief Guest" />
+          <div>
+            <h3 style="margin:0">Prof./Shri/Smt. Full Name</h3>
+            <p class="lede">Designation, Affiliation</p>
+            <p>Short bio paragraph to introduce the Chief Guest. Mention notable achievements, awards, and connection to design or academia.</p>
+            <p><a href="#">Official website</a> · <a href="#">Press note</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="address" class="section">
+      <div class="container">
+        <h2>Convocation Address</h2>
+        <p class="lede">Add video embed or transcript. Provide a downloadable PDF if available.</p>
+        <article class="address">
+          <p class="blockquote">“Short excerpt from the speech—one or two memorable lines.”</p>
+          <h3 style="margin-top:0">Title of the Address</h3>
+          <p><em>Delivered by Prof./Shri/Smt. Full Name, Chief Guest, on DD Month 2025.</em></p>
+          <p>Transcript placeholder. Replace this with the full text of the address or a summary in 3–4 paragraphs. Ensure proper paragraphing and speaker attribution if multiple speakers are included.</p>
+          <p><a href="assets/convocation-address.pdf">Download full address (PDF)</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="photos" class="section">
+      <div class="container">
+        <h2>Event Photos</h2>
+        <p class="lede">Upload optimised images (≤ 1600px wide). Provide descriptive alt text for accessibility.</p>
+        <div class="gallery">
+          <figure>
+            <img src="assets/photo-1.jpg" alt="Graduates seated in the auditorium during the ceremony" />
+            <figcaption>2025 Ceremony — Hall</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/photo-2.jpg" alt="Chief guest delivering the convocation address on stage" />
+            <figcaption>Chief Guest Address</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/photo-3.jpg" alt="Group photo of faculty and graduates on stage" />
+            <figcaption>Group Photo</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" class="section">
+      <div class="container">
+        <h2>Award Winners · 2025</h2>
+        <p class="lede">Only official awardees are listed here. Each entry includes programme, specialisation, project (where applicable), and a short citation.</p>
+
+        <nav class="subnav" aria-label="Award categories">
+          <a href="#institute-awards">Institute Awards</a> ·
+          <a href="#school-awards">IDC School Awards</a> ·
+          <a href="#special-mentions">Special Mentions</a>
+        </nav>
+
+        <details open id="institute-awards">
+          <summary>Institute Awards</summary>
+          <div class="grid" role="list" aria-label="Institute Awards">
+            <article class="card award-card" role="listitem">
+              <header class="award-head">
+                <div class="avatar" aria-hidden="true">AB</div>
+                <div>
+                  <h3 class="award-title">Institute Gold Medal</h3>
+                  <p class="recipient">A. B. Student — M.Des, Interaction Design</p>
+                </div>
+              </header>
+              <p class="project"><strong>Project:</strong> Title of thesis or project (Supervisor: Prof. Name)</p>
+              <p class="citation">Citation: One–two lines describing the achievement and basis for the award.</p>
+              <p class="links"><a href="#">Project page</a> · <a href="#">Portfolio</a></p>
+            </article>
+            <article class="card award-card" role="listitem">
+              <header class="award-head">
+                <div class="avatar" aria-hidden="true">CD</div>
+                <div>
+                  <h3 class="award-title">President of India Medal</h3>
+                  <p class="recipient">C. D. Student — B.Des, Communication Design</p>
+                </div>
+              </header>
+              <p class="project"><strong>Project:</strong> Title (Supervisor: Prof. Name)</p>
+              <p class="citation">Citation placeholder text. Replace with official wording.</p>
+            </article>
+          </div>
+        </details>
+
+        <details id="school-awards">
+          <summary>IDC School Awards</summary>
+          <div class="grid" role="list" aria-label="IDC School Awards">
+            <article class="card award-card" role="listitem">
+              <header class="award-head">
+                <div class="avatar" aria-hidden="true">EF</div>
+                <div>
+                  <h3 class="award-title">Best Graduation Project — Industrial Design</h3>
+                  <p class="recipient">E. F. Student — B.Des, Industrial Design</p>
+                </div>
+              </header>
+              <p class="project"><strong>Project:</strong> Project Title (Guide: Prof. Name)</p>
+              <p class="citation">Short citation highlighting impact, innovation, or rigour.</p>
+            </article>
+
+            <article class="card award-card" role="listitem">
+              <header class="award-head">
+                <div class="avatar" aria-hidden="true">GH</div>
+                <div>
+                  <h3 class="award-title">Academic Excellence — M.Des</h3>
+                  <p class="recipient">G. H. Student — M.Des, Animation</p>
+                </div>
+              </header>
+              <p class="citation">Short citation or criteria (e.g., CPI threshold, studio performance).</p>
+            </article>
+          </div>
+        </details>
+
+        <details id="special-mentions">
+          <summary>Special Mentions</summary>
+          <div class="grid" role="list" aria-label="Special Mentions">
+            <article class="card award-card" role="listitem">
+              <header class="award-head">
+                <div class="avatar" aria-hidden="true">IJ</div>
+                <div>
+                  <h3 class="award-title">Jury Commendation</h3>
+                  <p class="recipient">I. J. Student — PhD</p>
+                </div>
+              </header>
+              <p class="project"><strong>Thesis:</strong> Dissertation Title (Advisors: Prof. A, Prof. B)</p>
+              <p class="citation">One–two line commendation text.</p>
+            </article>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- 3) Schedule -->
+    
+
+    <!-- 4) Graduates -->
+    
+
+    <!-- 5) Photos -->
+    
+
+    <!-- 6) Chief Guest -->
+    
+
+    <!-- 7) Convocation Address -->
+    
+
+    <!-- 8) Venue & Live Stream -->
+    <section id="programme" class="section">
+      <div class="container">
+        <h2>Schedule & Venue</h2>
+        <p class="lede">All timings in IST (UTC+5:30). Venue details are provided below.</p>
+        <div class="card">
+          <table class="schedule">
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Item</th>
+                <th scope="col">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>09:30 – 10:00</td>
+                <td>Registration</td>
+                <td>Foyer, IDC Auditorium</td>
+              </tr>
+              <tr>
+                <td>10:00 – 10:15</td>
+                <td>Procession</td>
+                <td>Academic procession enters the hall</td>
+              </tr>
+              <tr>
+                <td>10:15 – 10:30</td>
+                <td>Welcome</td>
+                <td>Opening remarks by the Head of Department</td>
+              </tr>
+              <tr>
+                <td>10:30 – 11:00</td>
+                <td>Convocation Address <span class="pill">Chief Guest</span></td>
+                <td>Title of the address (to be confirmed)</td>
+              </tr>
+              <tr>
+                <td>11:00 – 12:00</td>
+                <td>Degree Conferment</td>
+                <td>By programme: B.Des, M.Des, PhD</td>
+              </tr>
+              <tr>
+                <td>12:00 – 12:15</td>
+                <td>Vote of Thanks</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>12:15 onwards</td>
+                <td>Group Photos</td>
+                <td>Graduates and faculty on stage</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card" style="margin-top:.75rem">
+          <p><strong>Venue:</strong> IDC Auditorium, IIT Bombay, Powai, Mumbai</p>
+          <p><strong>Date:</strong> DD Month 2025</p>
+          
+          
+        </div>
+        
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 9) Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <small>© 2025 IDC School of Design, IIT Bombay · <a href="#">Privacy</a> · <a href="#">Accessibility</a></small>
+      <div style="margin-top:.5rem"><a href="#hero">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <!--
+    HOW TO USE / QUICK NOTES (delete before go‑live)
+    ——————————————————————————————————————————————
+    1. Switch the visual style by changing the class on <html>:
+       theme-classic | theme-cards | theme-minimal
+    2. Update brand hue by editing --brand-h at the top (0–360).
+    3. Replace placeholder text/images in each section.
+    4. Keep images optimised (JPG, 70–80% quality; ≤1600px).
+    5. Keep names alphabetised by last name; use consistent programme labels.
+    6. If you need multiple pages later, reuse the header/footer and split sections.
+  -->
+</body>
+</html>
